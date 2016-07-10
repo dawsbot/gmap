@@ -14,21 +14,35 @@ const is200 = function (url, done) {
 };
 
 describe('gmap', function () {
-  it('parses an action properly', function () {
-    assert.equal(gmap('dir'), `${_constants.baseUri}/dir`);
-    assert.equal(gmap('directions'), `${_constants.baseUri}/dir`);
+  it('simple object query', function (done) {
+    const query = {
+      saddr: 'here'
+    };
+    assert.equal(gmap(query), `${_constants.baseUri}?saddr=here`);
+    is200(gmap.directions(query), done);
+  });
+  it('complex object query', function (done) {
+    const query = {
+      saddr: 'here',
+      daddr: 'there',
+      dirflg: 'r'
+    };
+    assert.equal(gmap(query), `${_constants.baseUri}?saddr=here&daddr=there&dirflg=r`);
+    is200(gmap(query), done);
   });
 });
 
-describe('directions', function () {
-  it('parses from and to without special characters', function (done) {
-    const expectedUrl = `${_constants.baseUri}/dir/me/you`;
-    assert.equal(gmap.directions('me', 'you'), expectedUrl);
-    is200(gmap.directions('me', 'you'), done);
+describe('gmap.directions', function () {
+  it('basic from and to', function (done) {
+    assert.equal(gmap.directions('here', 'there'), `${_constants.baseUri}?saddr=here&daddr=there`);
+    is200(gmap.directions('here', 'there'), done);
   });
-  it('parses from and to with special characters', function (done) {
-    const expectedUrl = `${_constants.baseUri}/dir/my%20place/your%20place`;
-    assert.equal(gmap.directions('my place', 'your place'), expectedUrl);
-    is200(gmap.directions('my place', 'your place'), done);
+  it('basic from and to', function (done) {
+    const query = {
+      dirflg: 'r'
+    };
+    //TODO: refactor so that assert.equal is actually a regex check
+    assert.equal(gmap.directions('here', 'there', query), `${_constants.baseUri}?saddr=here&daddr=there?dirflg=r`);
+    is200(gmap.directions('here', 'there'), done);
   });
 });
