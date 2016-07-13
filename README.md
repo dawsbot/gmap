@@ -45,6 +45,44 @@ gmap(query);
 <br>
 <br>
 
+## API
+
+### gmap(query)
+
+Returns a string for the Google Maps url associated to your query. 
+
+#### query
+
+Type: `object`
+
+Query parameters fully documented below. See [Query Parameters](#query-parameters)
+
+<br>
+
+### gmap.directions(from, to, query)
+
+This is a convenience wrapper around `gmap(query)`. Returns a string for the Google Maps url associated to your query. 
+
+#### from 
+
+Type: `string`
+
+Starting location. Can be address, cross-streets, lat/long, etc.
+
+#### to
+
+Type: `string` or `array`
+
+Ending location(s). Can be address, cross-streets, lat/long, etc.
+
+#### query
+
+Type: `object`
+
+Query parameters fully documented below. See [Query Parameters](#query-parameters)
+
+<br>
+
 ## Query Parameters
 
 Google Maps has a cryptic query system - this will make it easier to craft anything you'll need:
