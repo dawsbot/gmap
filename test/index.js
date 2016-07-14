@@ -1,7 +1,7 @@
 const chai = require('chai');
 const assert = chai.assert;
-const gmap = require('../lib');
-const _constants = require('../lib/constants');
+const gmap = require('../dist');
+const _constants = require('../dist/constants');
 const request = require('request');
 
 // check if a url's http code is 200
