@@ -2,15 +2,15 @@ const chai = require('chai');
 const assert = chai.assert;
 const gmap = require('../dist');
 const _constants = require('../dist/constants');
-const request = require('request');
+const http = require('http-request');
 
 // check if a url's http code is 200
 const is200 = function (url, done) {
-  request(url, function (error, response) {
-    if (!error && response.statusCode === 200) {
+  http.get(url, function (error, response) {
+    if (!error && response.code === 200) {
       done();
     } else {
-      done(new Error(`err: ${error} - http code: ${response.statusCode}`));
+      done(new Error('err: ' + error + '- http code: ' + response.statusCode));
     }
   });
 };
@@ -27,7 +27,7 @@ describe('gmap', function () {
     const query = {
       saddr: 'here'
     };
-    assert.equal(gmap(query), `${_constants.baseUri}?saddr=here`);
+    assert.equal(gmap(query), _constants.baseUri + '?saddr=here');
     is200(gmap.directions(query), done);
   });
 
@@ -37,7 +37,7 @@ describe('gmap', function () {
       daddr: 'there',
       dirflg: 'r'
     };
-    assert.equal(gmap(query), `${_constants.baseUri}?saddr=here&daddr=there&dirflg=r`);
+    assert.equal(gmap(query), _constants.baseUri + '?saddr=here&daddr=there&dirflg=r');
     is200(gmap(query), done);
   });
 
@@ -57,7 +57,7 @@ describe('gmap', function () {
 
 describe('gmap.directions', function () {
   it('basic from and to', function (done) {
-    assert.equal(gmap.directions('here', 'there'), `${_constants.baseUri}?saddr=here&daddr=there`);
+    assert.equal(gmap.directions('here', 'there'), _constants.baseUri + '?saddr=here&daddr=there');
     is200(gmap.directions('here', 'there'), done);
   });
 
