@@ -44,7 +44,7 @@
   },
   "repository": "dawsonbotsford/gmap",
   "scripts": {
-    "test": "eslint lib && npm run prepublish && nyc mocha",
+    "test": "eslint lib && npm run prepublish && nyc mocha -t 15000",
     "prepublish": "babel lib --out-dir=dist",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
