@@ -348,7 +348,7 @@ MIT © [Dawson Botsford](http://dawsonbotsford.com)
 
 [npm-image]: https://badge.fury.io/js/gmap.svg
 [npm-url]: https://npmjs.org/package/gmap
-[travis-image]: https://travis-ci.org/dawsonbotsford/gmap.svg?branch=master
-[travis-url]: https://travis-ci.org/dawsonbotsford/gmap
+[travis-image]: https://travis-ci.org/dawsbot/gmap.svg?branch=master
+[travis-url]: https://travis-ci.org/dawsbot/gmap
 [coveralls-image]: https://coveralls.io/repos/dawsonbotsford/gmap/badge.svg
 [coveralls-url]: https://coveralls.io/r/dawsonbotsford/gmap
